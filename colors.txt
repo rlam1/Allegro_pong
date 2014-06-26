@@ -1,0 +1,3 @@
+The color pallete the game will use will come from the one google uses:
+
+http://www.google.com/design/spec/style/color.html#color-ui-color-palette
