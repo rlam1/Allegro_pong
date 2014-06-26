@@ -27,6 +27,15 @@ Object::Object(float X, float Y, int w, int h,
                 ((w * 3.0) / 4), ((h * 3.0) / 4.0),   /* p2(x,y) */
                 w / 4.0, ((h * 3.0) / 4.0),           /* p3(x,y) */
                 al_color_html("#ffeb3b"));
+                
+            al_draw_filled_rectangle((w * 15.0) / 32.0, ((h * 14.0) / 32.0),
+                ((w * 17.0) / 32.0), ((h * 19.0) / 32.0),
+                al_color_html("#e51c23"));
+                
+            al_draw_filled_circle((w * 16.0) / 32.0, (h * 21.0) / 32.0,
+                1/32.0, al_color_html("e51c23"));
+                
+            al_set_target_backbuffer(al_get_current_display());
         }
     }
 }

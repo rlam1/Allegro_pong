@@ -12,6 +12,8 @@ class Object
         Object(float X, float Y, int w, int h, 
             float accelerationX, float accelerationY,
             int status, std::string bitmapFileLoc);
+            
+        ~Object();
     
         virtual void reset();
         virtual void update();
@@ -32,4 +34,4 @@ class Object
         float accelX, accelY;
         int   status; //Bit field that holds status flags for object
         ALLEGRO_BITMAP *bitmap;
-}
+};
