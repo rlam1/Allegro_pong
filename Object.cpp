@@ -63,7 +63,7 @@ void Object::getAccel(float &accelX, float &accelY)
 	accelY = this->accelY;
 }
 
-int  Object::getStatus()
+int Object::getStatus()
 {
 	return status;
 }

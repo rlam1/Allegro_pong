@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-c -Wall -std=c++11 -g -I/usr/local/include/
 LDFLAGS=
-SOURCES=main.cxx Object.cpp
+SOURCES=main.cpp Object.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=pong
 ALLEGRO_LIBRARIES := allegro-5 allegro_primitives-5 allegro_image-5 allegro_font-5 allegro_color-5
