@@ -24,7 +24,7 @@ Object::Object(float X, float Y, int w, int h,
     } else {
 		setBit(ER_ERROR);
 		setBit(ER_INVALID_STATE);
-		bitmap = NULL
+        bitmap = NULL;
 	}
 }
 
@@ -120,8 +120,7 @@ void Object::generate_error_bitmap()
 		((w * 17.0) / 32.0), ((h * 19.0) / 32.0),
 		al_color_html("#e51c23"));
 		
-	al_draw_filled_circle((w * 16.0) / 32.0, (h * 21.0) / 32.0,
-		1/32.0, al_color_html("e51c23"));
+    al_draw_filled_rectangle((w * 15.0) / 32.0, (h * 5.0) / 8, (w * 17.0) / 32.0, (h * 11.0) / 16.0, al_color_html("#e51c23"));
 		
 	al_set_target_backbuffer(al_get_current_display());
 }
@@ -141,7 +140,7 @@ bool Object::testBit(int value)
 	}
 }
 
-void clearBit(int value)
+void Object::clearBit(int value)
 {
 	status &= ~value;
 }

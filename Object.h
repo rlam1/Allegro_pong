@@ -17,8 +17,8 @@ class Object
             
         ~Object();
     
-        virtual void reset();
-        virtual void update();
+        virtual void reset() {}
+        virtual void update() {}
 		virtual void draw();
         
         void getPos(float &x, float &y); //Sends to two variables

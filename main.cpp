@@ -19,7 +19,11 @@ int main(int argc, char **argv)
     al_install_keyboard();
     
     int displayFlags = al_get_new_display_flags();
+#ifdef WIN32
+    al_set_new_bitmap_flags(displayFlags | ALLEGRO_FULLSCREEN);
+#elif
     al_set_new_display_flags(displayFlags | ALLEGRO_FULLSCREEN_WINDOW);
+#endif
     ALLEGRO_DISPLAY *display = al_create_display(1024, 600);
     al_clear_to_color(al_map_rgb(13, 13, 13));
     al_flip_display();
@@ -37,7 +41,7 @@ int main(int argc, char **argv)
 	bool done = false;
 	bool redraw = false;
 	
-	Object obj1(800, 600, 80, 80, 10, 10, 0, "Garbage Value");
+	Object obj1(512, 300, 80, 80, 10, 10, 0, "Garbage Value");
 	
 	while(!done)
 	{
@@ -58,6 +62,8 @@ int main(int argc, char **argv)
 		{
 			obj1.draw();
 			redraw = false;
+
+            al_flip_display();
 		}
 	}
     
