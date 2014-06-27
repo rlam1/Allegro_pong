@@ -24,8 +24,7 @@ class Object
         int  getStatus();
         
         void setPosition(float x, float y);
-        void setAccelX(float accel);
-        void setAccelY(float accel);
+        void setAccel(float accelX, accelY);
         void setStatus(int flag);
         
     private:

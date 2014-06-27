@@ -44,3 +44,55 @@ Object::~Object()
 {
 	al_destroy_bitmap(bitmap);
 }
+
+void Object::getPos(float &x, float &y)
+{
+	x = this->x;
+	y = this->y;
+}
+
+void Object::getSize(float &w, float &h)
+{
+	w = this->w;
+	h = this->h;
+}
+
+void Object::getAccel(float &accelX, float &accelY)
+{
+	accelX = this->accelX;
+	accelY = this->accelY;
+}
+
+int  Object::getStatus()
+{
+	return status;
+}
+
+void Object::setPosition(float x, float y)
+{
+	this->x = x;
+	this->y = y;
+}
+
+void Object::setAccel(float accelX, accelY)
+{
+	this->accelX = accelX;
+	this->accelY = accelY;
+}
+
+void Object::setStatus(int flag)
+{
+	this->status |= flags;
+}
+
+
+
+
+
+
+
+
+
+
+
+
