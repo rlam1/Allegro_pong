@@ -18,31 +18,29 @@ Object::Object(float X, float Y, int w, int h,
         
         if(!bitmap)
         {
-            bitmap = al_create_bitmap(w, h);
-            
-            al_set_target_bitmap(bitmap);
-            al_clear_to_color(al_color_html("#e51c23")); // Nice red
-            
-            al_draw_filled_triangle(w / 2.0, h / 4.0, /* p1(x,y) */
-                ((w * 3.0) / 4), ((h * 3.0) / 4.0),   /* p2(x,y) */
-                w / 4.0, ((h * 3.0) / 4.0),           /* p3(x,y) */
-                al_color_html("#ffeb3b"));
-                
-            al_draw_filled_rectangle((w * 15.0) / 32.0, ((h * 14.0) / 32.0),
-                ((w * 17.0) / 32.0), ((h * 19.0) / 32.0),
-                al_color_html("#e51c23"));
-                
-            al_draw_filled_circle((w * 16.0) / 32.0, (h * 21.0) / 32.0,
-                1/32.0, al_color_html("e51c23"));
-                
-            al_set_target_backbuffer(al_get_current_display());
+			setBit(ERROR);
+            generate_error_bitmap();
         }
-    }
+    } else {
+		setBit(ERROR);
+		setBit(ER_INVALID_STATE);
+		bitmap = std::nullptr;
+	}
 }
 
 Object::~Object()
 {
 	al_destroy_bitmap(bitmap);
+}
+
+void Object::draw()
+{
+	if(testBit(ER_INVALID_STATE))
+	{
+		return;
+	} else {
+		al_draw_bitmap(bitmap, x - (w / 2.0), y - (h / 2.0), 0);
+	}
 }
 
 void Object::getPos(float &x, float &y)
@@ -82,7 +80,70 @@ void Object::setAccel(float accelX, accelY)
 
 void Object::setStatus(int flag)
 {
-	this->status |= flags;
+	setBit(flags);
+}
+
+ALLEGRO_BITMAP *Object::create_memory_bitmap()
+{
+	setBit(ER_BITMAP);
+	setBit(ISMEM_BITMAP);
+	
+    int flags = al_get_new_bitmap_flags();
+    al_set_new_bitmap_flags(flags | ALLEGRO_MEMORY_BITMAP);
+	
+	ALLEGRO_BITMAP *bmp;
+    bmp = al_create_bitmap(w, h);
+	
+    al_set_new_bitmap_flags(flags);
+	
+    return bmp;
+}
+
+void Object::generate_error_bitmap()
+{
+	if(testBit(ISMEM_BITMAP))
+	{
+		bitmap = create_memory_bitmap();
+	} else {
+		bitmap = al_create_bitmap(w, h);
+	}
+	
+	al_set_target_bitmap(bitmap);
+	al_clear_to_color(al_color_html("#e51c23")); // Nice red
+	
+	al_draw_filled_triangle(w / 2.0, h / 4.0, /* p1(x,y) */
+		((w * 3.0) / 4), ((h * 3.0) / 4.0),   /* p2(x,y) */
+		w / 4.0, ((h * 3.0) / 4.0),           /* p3(x,y) */
+		al_color_html("#ffeb3b"));
+		
+	al_draw_filled_rectangle((w * 15.0) / 32.0, ((h * 14.0) / 32.0),
+		((w * 17.0) / 32.0), ((h * 19.0) / 32.0),
+		al_color_html("#e51c23"));
+		
+	al_draw_filled_circle((w * 16.0) / 32.0, (h * 21.0) / 32.0,
+		1/32.0, al_color_html("e51c23"));
+		
+	al_set_target_backbuffer(al_get_current_display());
+}
+
+void Object::setBit(int value)
+{
+	status |= value;
+}
+
+bool Object::testBit(int value)
+{
+	if( (status & value) != 0)
+	{
+		return true;
+	} else {
+		return false;
+	}
+}
+
+void clearBit(int value)
+{
+	status &= ~value;
 }
 
 

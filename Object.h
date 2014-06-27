@@ -6,6 +6,8 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_color.h>
 
+#include "status.h"
+
 class Object
 {
     public:
@@ -17,6 +19,7 @@ class Object
     
         virtual void reset();
         virtual void update();
+		virtual void draw();
         
         void getPos(float &x, float &y); //Sends to two variables
         void getsize(float &w, float &h);
@@ -33,4 +36,11 @@ class Object
         float accelX, accelY;
         int   status; //Bit field that holds status flags for object
         ALLEGRO_BITMAP *bitmap;
+		
+		ALLEGRO_BITMAP *create_memory_bitmap();
+		void generate_error_bitmap();
+		
+		inline void setBit(int value);
+		inline bool testBit(int value);
+		inline void clearBit(int value);
 };
