@@ -39,3 +39,8 @@ Object::Object(float X, float Y, int w, int h,
         }
     }
 }
+
+Object::~Object()
+{
+	al_destroy_bitmap(bitmap);
+}
