@@ -54,7 +54,7 @@ int main(int argc, char **argv)
 				break;
 		}
 		
-		if(al_is_event_queue_empty() && redraw)
+		if(al_is_event_queue_empty(queue) && redraw)
 		{
 			obj1.draw();
 			redraw = false;

@@ -18,13 +18,13 @@ Object::Object(float X, float Y, int w, int h,
         
         if(!bitmap)
         {
-			setBit(ERROR);
+			setBit(ER_ERROR);
             generate_error_bitmap();
         }
     } else {
-		setBit(ERROR);
+		setBit(ER_ERROR);
 		setBit(ER_INVALID_STATE);
-		bitmap = std::nullptr;
+		bitmap = NULL
 	}
 }
 
@@ -72,7 +72,7 @@ void Object::setPosition(float x, float y)
 	this->y = y;
 }
 
-void Object::setAccel(float accelX, accelY)
+void Object::setAccel(float accelX, float accelY)
 {
 	this->accelX = accelX;
 	this->accelY = accelY;
@@ -80,7 +80,7 @@ void Object::setAccel(float accelX, accelY)
 
 void Object::setStatus(int flag)
 {
-	setBit(flags);
+	setBit(flag);
 }
 
 ALLEGRO_BITMAP *Object::create_memory_bitmap()

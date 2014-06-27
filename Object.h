@@ -22,12 +22,12 @@ class Object
 		virtual void draw();
         
         void getPos(float &x, float &y); //Sends to two variables
-        void getsize(float &w, float &h);
+        void getSize(float &w, float &h);
         void getAccel(float &accelX, float &accelY);
         int  getStatus();
         
         void setPosition(float x, float y);
-        void setAccel(float accelX, accelY);
+        void setAccel(float accelX, float accelY);
         void setStatus(int flag);
         
     private:
@@ -40,7 +40,7 @@ class Object
 		ALLEGRO_BITMAP *create_memory_bitmap();
 		void generate_error_bitmap();
 		
-		inline void setBit(int value);
-		inline bool testBit(int value);
-		inline void clearBit(int value);
+		void setBit(int value);
+		bool testBit(int value);
+		void clearBit(int value);
 };
