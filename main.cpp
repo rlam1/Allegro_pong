@@ -7,6 +7,8 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_color.h>
 
+#include "Object.h"
+
 int main(int argc, char **argv)
 {
     al_init();
@@ -25,6 +27,39 @@ int main(int argc, char **argv)
     ALLEGRO_FONT *sysFont = al_create_builtin_font();
     ALLEGRO_TIMER *timer = al_create_timer(1 / 60.0);
     ALLEGRO_EVENT_QUEUE *queue = al_create_event_queue();
+	
+	al_register_event_source(queue, al_get_display_event_source(display));
+	al_register_event_source(queue, al_get_keyboard_event_source());
+	al_register_event_source(queue, al_get_timer_event_source(timer));
+	
+	al_start_timer(timer);
+	
+	bool done = false;
+	bool redraw = false;
+	
+	Object obj1(800, 600, 80, 80, 10, 10, 0, "Garbage Value");
+	
+	while(!done)
+	{
+		ALLEGRO_EVENT ev;
+		al_wait_for_event(queue, &ev);
+		
+		switch(ev.type)
+		{
+			case ALLEGRO_EVENT_DISPLAY_CLOSE:
+				done = true;
+				break;
+			case ALLEGRO_EVENT_TIMER:
+				redraw = true;
+				break;
+		}
+		
+		if(al_is_event_queue_empty() && redraw)
+		{
+			obj1.draw();
+			redraw = false;
+		}
+	}
     
     return EXIT_SUCCESS;
 }
