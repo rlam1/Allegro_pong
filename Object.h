@@ -15,7 +15,7 @@ class Object
             float accelerationX, float accelerationY,
             int status, std::string bitmapFileLoc);
             
-        ~Object();
+        virtual ~Object();
     
         virtual void reset() {}
         virtual void update() {}

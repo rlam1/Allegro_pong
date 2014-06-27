@@ -107,20 +107,25 @@ void Object::generate_error_bitmap()
 	} else {
 		bitmap = al_create_bitmap(w, h);
 	}
+
+    ALLEGRO_COLOR background = al_color_html("#3f51b5");
+    ALLEGRO_COLOR shadow = al_color_html("#1a237e");
+    ALLEGRO_COLOR sign = al_color_html("#ffeb3b");
 	
 	al_set_target_bitmap(bitmap);
-	al_clear_to_color(al_color_html("#e51c23")); // Nice red
+    al_clear_to_color(background);
+
+    // Shadow (3 triangles)
+    al_draw_filled_triangle(w / 2.0, h / 4.0, w, (h * 3.0) / 4.0, w / 2.0, h, shadow);
+    al_draw_filled_triangle(w, (h * 3.0) / 4.0, w, h, w / 2.0, h, shadow);
+    al_draw_filled_triangle(w / 2.0, h / 4.0, w / 2.0, h, w / 4.0, (h * 3.0) / 4.0, shadow);
 	
-	al_draw_filled_triangle(w / 2.0, h / 4.0, /* p1(x,y) */
-		((w * 3.0) / 4), ((h * 3.0) / 4.0),   /* p2(x,y) */
-		w / 4.0, ((h * 3.0) / 4.0),           /* p3(x,y) */
-		al_color_html("#ffeb3b"));
+    // Alert sign triangle
+	al_draw_filled_triangle(w / 2.0, h / 4.0, ((w * 3.0) / 4), ((h * 3.0) / 4.0), w / 4.0, ((h * 3.0) / 4.0), sign);
 		
-	al_draw_filled_rectangle((w * 15.0) / 32.0, ((h * 14.0) / 32.0),
-		((w * 17.0) / 32.0), ((h * 19.0) / 32.0),
-		al_color_html("#e51c23"));
-		
-    al_draw_filled_rectangle((w * 15.0) / 32.0, (h * 5.0) / 8, (w * 17.0) / 32.0, (h * 11.0) / 16.0, al_color_html("#e51c23"));
+    // Exclamation point
+	al_draw_filled_rectangle((w * 15.0) / 32.0, ((h * 14.0) / 32.0), ((w * 17.0) / 32.0), ((h * 19.0) / 32.0), background);
+    al_draw_filled_rectangle((w * 15.0) / 32.0, (h * 5.0) / 8, (w * 17.0) / 32.0, (h * 11.0) / 16.0, background);
 		
 	al_set_target_backbuffer(al_get_current_display());
 }

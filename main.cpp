@@ -21,7 +21,7 @@ int main(int argc, char **argv)
     int displayFlags = al_get_new_display_flags();
 #ifdef WIN32
     al_set_new_bitmap_flags(displayFlags | ALLEGRO_FULLSCREEN);
-#elif
+#else
     al_set_new_display_flags(displayFlags | ALLEGRO_FULLSCREEN_WINDOW);
 #endif
     ALLEGRO_DISPLAY *display = al_create_display(1024, 600);
@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 	bool done = false;
 	bool redraw = false;
 	
-	Object obj1(512, 300, 80, 80, 10, 10, 0, "Garbage Value");
+	Object obj1(512, 300, 500, 500, 10, 10, 0, "Garbage Value");
 	
 	while(!done)
 	{
