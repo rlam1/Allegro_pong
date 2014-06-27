@@ -56,6 +56,14 @@ int main(int argc, char **argv)
 			case ALLEGRO_EVENT_TIMER:
 				redraw = true;
 				break;
+            case ALLEGRO_EVENT_KEY_DOWN:
+                if (ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE)
+                {
+                    done = true;
+                }
+                break;
+            default:
+                break;
 		}
 		
 		if(al_is_event_queue_empty(queue) && redraw)
