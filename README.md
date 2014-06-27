@@ -24,3 +24,8 @@ What I am doing right now?
   * Testing colours and styles so THEN start doing some artwork.
   * Having a life apart of this...
   * You get the idea
+  
+  About the Windows project file...
+  ---------------------------------
+  
+  The Windows project file does not use best examples in where the library is located, so Allegro is in an arbitrary location in my diskm but if you take the project be sure to configure it correctly before trying to build everything.
