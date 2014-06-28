@@ -8,6 +8,7 @@
 #include <allegro5/allegro_color.h>
 
 #include "Object.h"
+#include "Ball.h"
 
 int main(int argc, char **argv)
 {
@@ -41,7 +42,7 @@ int main(int argc, char **argv)
 	bool done = false;
 	bool redraw = false;
 	
-	Object obj1(512, 300, 500, 500, 10, 10, 0, "Garbage Value");
+	Ball obj1(512, 300, 500, 500, 0, "fhioekl");
 	
 	while(!done)
 	{
@@ -54,6 +55,7 @@ int main(int argc, char **argv)
 				done = true;
 				break;
 			case ALLEGRO_EVENT_TIMER:
+                obj1.update();
 				redraw = true;
 				break;
             case ALLEGRO_EVENT_KEY_DOWN:
@@ -68,6 +70,8 @@ int main(int argc, char **argv)
 		
 		if(al_is_event_queue_empty(queue) && redraw)
 		{
+            al_clear_to_color(al_color_html("#212121"));
+
 			obj1.draw();
 			redraw = false;
 

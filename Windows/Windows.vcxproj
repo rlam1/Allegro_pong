@@ -11,10 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Ball.cpp" />
+    <ClCompile Include="..\Input.cpp" />
     <ClCompile Include="..\main.cpp" />
     <ClCompile Include="..\Object.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Ball.h" />
+    <ClInclude Include="..\Input.h" />
     <ClInclude Include="..\Object.h" />
     <ClInclude Include="..\status.h" />
   </ItemGroup>

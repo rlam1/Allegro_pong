@@ -10,3 +10,4 @@ const int HIDDEN = (1 << 5);
 const int DEAD = (1 << 6);
 const int ISATLAS = (1 << 7);
 const int ISMEM_BITMAP = (1 << 8);
+const int DRAW_HITBOX = (1 << 9);
