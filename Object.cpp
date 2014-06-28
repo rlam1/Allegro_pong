@@ -11,6 +11,9 @@ Object::Object(float X, float Y, int w, int h,
     accelX = accelerationX;
     accelY = accelerationY;
     this->status = status;
+
+    center.x = X - (w / 2.0);
+    center.y = Y - (h / 2.0);
     
     if(al_is_system_installed())
     {
@@ -39,7 +42,7 @@ void Object::draw()
 	{
 		return;
 	} else {
-		al_draw_bitmap(bitmap, x - (w / 2.0), y - (h / 2.0), 0);
+		al_draw_bitmap(bitmap, center.x, center.y, 0);
 	}
 }
 
@@ -66,10 +69,17 @@ int Object::getStatus()
 	return status;
 }
 
+Point Object::getCenter()
+{
+    return center;
+}
+
 void Object::setPosition(float x, float y)
 {
 	this->x = x;
 	this->y = y;
+
+    calcCenter();
 }
 
 void Object::setAccel(float accelX, float accelY)
@@ -128,6 +138,12 @@ void Object::generate_error_bitmap()
     al_draw_filled_rectangle((w * 15.0) / 32.0, (h * 5.0) / 8, (w * 17.0) / 32.0, (h * 11.0) / 16.0, background);
 		
 	al_set_target_backbuffer(al_get_current_display());
+}
+
+void Object::calcCenter()
+{
+    center.x = x - (w / 2.0);
+    center.y = y - (h / 2.0);
 }
 
 void Object::setBit(int value)

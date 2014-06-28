@@ -8,6 +8,10 @@
 
 #include "status.h"
 
+struct Point {
+    float x, y;
+};
+
 class Object
 {
     public:
@@ -19,21 +23,27 @@ class Object
     
         virtual void reset() {}
         virtual void update() {}
-		virtual void draw();
+		void draw();
         
-        void getPos(float &x, float &y); //Sends to two variables
-        void getSize(float &w, float &h);
-        void getAccel(float &accelX, float &accelY);
-        int  getStatus();
+        void  getPos(float &x, float &y); //Sends to two variables
+        void  getSize(float &w, float &h);
+        void  getAccel(float &accelX, float &accelY);
+        int   getStatus();
+        Point getCenter();
         
         void setPosition(float x, float y);
         void setAccel(float accelX, float accelY);
         void setStatus(int flag);
-        
-    private:
+
+    protected:
         float x, y;
         int   w, h;
         float accelX, accelY;
+        Point center;
+
+        void calcCenter();
+        
+    private:
         int   status; //Bit field that holds status flags for object
         ALLEGRO_BITMAP *bitmap;
 		
