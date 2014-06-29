@@ -20,12 +20,15 @@ int main(int argc, char **argv)
     al_install_keyboard();
     
     int displayFlags = al_get_new_display_flags();
-#ifdef WIN32
+#ifdef _WIN32
     al_set_new_bitmap_flags(displayFlags | ALLEGRO_FULLSCREEN);
 #else
     al_set_new_display_flags(displayFlags | ALLEGRO_FULLSCREEN_WINDOW);
 #endif
     ALLEGRO_DISPLAY *display = al_create_display(1024, 600);
+    Object iconObject(0, 0, 100, 100, 0, 0, 0, "This only hold the icon for the game, that is, the error image! :)");
+    al_set_window_title(display, "Pong Clone");
+    al_set_display_icon(display, iconObject.getBitmap());
     al_clear_to_color(al_map_rgb(13, 13, 13));
     al_flip_display();
     
@@ -42,7 +45,8 @@ int main(int argc, char **argv)
 	bool done = false;
 	bool redraw = false;
 	
-	Ball obj1(512, 300, 500, 500, 0, "fhioekl");
+	Ball obj1(512, 300, 50, 50, 0, "Error Image loaded here!");
+    obj1.reset();
 	
 	while(!done)
 	{
@@ -73,9 +77,9 @@ int main(int argc, char **argv)
             al_clear_to_color(al_color_html("#212121"));
 
 			obj1.draw();
-			redraw = false;
-
             al_flip_display();
+
+			redraw = false;
 		}
 	}
     
