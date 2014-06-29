@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_primitives.h>
@@ -30,6 +31,7 @@ class Object
         void  getAccel(float &accelX, float &accelY);
         int   getStatus();
         Point getCenter();
+        ALLEGRO_BITMAP *getBitmap();
         
         void setPosition(float x, float y);
         void setAccel(float accelX, float accelY);

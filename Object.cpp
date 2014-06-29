@@ -12,8 +12,7 @@ Object::Object(float X, float Y, int w, int h,
     accelY = accelerationY;
     this->status = status;
 
-    center.x = X - (w / 2.0);
-    center.y = Y - (h / 2.0);
+    calcCenter();
     
     if(al_is_system_installed())
     {
@@ -72,6 +71,17 @@ int Object::getStatus()
 Point Object::getCenter()
 {
     return center;
+}
+
+ALLEGRO_BITMAP *Object::getBitmap()
+{
+    if (testBit(ER_INVALID_STATE))
+    {
+        return NULL;
+    } else
+    {
+        return bitmap;
+    }
 }
 
 void Object::setPosition(float x, float y)
