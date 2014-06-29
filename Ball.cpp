@@ -2,7 +2,14 @@
 
 void Ball::reset()
 {
-    setPosition(512, 300);
+    float resetX, resetY;
+
+    resetX = displayW / 2.0;
+    resetY = rand() % displayH;
+
+    randomDirection();
+
+    setPosition(resetX, resetY);
 }
 
 void Ball::update()
@@ -11,6 +18,18 @@ void Ball::update()
     y += accelY;
 
     calcCenter();
+}
+
+void Ball::randomDirection()
+{
+    if (rand() % 2)
+    {
+        accelX *= -1;
+    }
+    if (rand() % 2)
+    {
+        accelY *= -1;
+    }
 }
 
 void Ball::getDisplayData()

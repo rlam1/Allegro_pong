@@ -9,11 +9,11 @@ class Ball : public Object
 {
     public:
         Ball(float X_, float Y_, int W_, int H_, int status_, std::string sprite)
-            : Object(X_, Y_, W_, H_, 0.5, 0.5, status_, sprite)
+            : Object(X_, Y_, W_, H_, 8.0, 8.0, status_, sprite)
         {
             std::srand(std::time(NULL));
-
             getDisplayData();
+            randomDirection();
         }
 
         ~Ball() {}
@@ -22,7 +22,7 @@ class Ball : public Object
         virtual void update() override;
 
     private:
-        const float MAX_ACCELERATION = 5.0;
+        const float ACCELERATION = 8.0;
 
         int displayW, displayH;
 
