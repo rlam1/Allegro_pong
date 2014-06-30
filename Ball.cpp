@@ -50,11 +50,11 @@ void Ball::getDisplayData()
 
 void Ball::checkForCollisions()
 {
-    if (x < 0 || x > displayW)
+    if (x - w / 2.0 < 0 || x + w / 2.0 > displayW)
     {
         accelX *= -1;
     }
-    if (y < 0 || y > displayH)
+    if (y - h / 2.0 < 0 || y + h / 2.0> displayH)
     {
         accelY *= -1;
     }
