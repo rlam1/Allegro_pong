@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 	bool done = false;
 	bool redraw = false;
 	
-	Ball obj1(512, 300, 50, 50, 2.0, DRAW_HITBOX, "Error Image loaded here!");
+	Ball obj1(512, 300, 50, 50, 8.0, DRAW_HITBOX, "Error Image loaded here!");
     obj1.reset();
 	
 	while(!done)

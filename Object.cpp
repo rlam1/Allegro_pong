@@ -11,6 +11,7 @@ Object::Object(float X, float Y, int w, int h,
     accelX = accelerationX;
     accelY = accelerationY;
     this->status = status;
+    this->hitboxFactor = 2.0;
 
     calcCenter();
     
@@ -30,6 +31,38 @@ Object::Object(float X, float Y, int w, int h,
 	}
 }
 
+Object::Object(float X, float Y, int w, int h,
+    float accelerationX, float accelerationY,
+    int status, float hitBoxFactor, std::string bitmapFileLoc)
+{
+    x = X;
+    y = Y;
+    this->w = w;
+    this->h = h;
+    accelX = accelerationX;
+    accelY = accelerationY;
+    this->status = status;
+    this->hitboxFactor = hitBoxFactor;
+
+    calcCenter();
+
+    if (al_is_system_installed())
+    {
+        bitmap = al_load_bitmap(bitmapFileLoc.c_str());
+
+        if (!bitmap)
+        {
+            setBit(ER_ERROR);
+            generate_error_bitmap();
+        }
+    } else
+    {
+        setBit(ER_ERROR);
+        setBit(ER_INVALID_STATE);
+        bitmap = NULL;
+    }
+}
+
 Object::~Object()
 {
 	al_destroy_bitmap(bitmap);
@@ -47,7 +80,10 @@ void Object::draw()
 
     if (testBit(DRAW_HITBOX))
     {
-        al_draw_rectangle(x - w / 2.0, y - h / 2.0, x + w /2.0, y + w / 2.0, al_map_rgb(255, 0, 0), 0);
+        al_draw_rectangle(
+            x - w / hitboxFactor, y - h / hitboxFactor,
+            x + w / hitboxFactor, y + w / hitboxFactor,
+            al_map_rgb(255, 0, 0), 0);
     }
 }
 

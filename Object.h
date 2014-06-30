@@ -19,6 +19,10 @@ class Object
         Object(float X, float Y, int w, int h, 
             float accelerationX, float accelerationY,
             int status, std::string bitmapFileLoc);
+
+        Object(float X, float Y, int w, int h,
+            float accelerationX, float accelerationY,
+            int status, float hitBoxFactor, std::string bitmapFileLoc);
             
         virtual ~Object();
     
@@ -42,6 +46,7 @@ class Object
         int   w, h;
         float accelX, accelY;
         Point center;
+        float hitboxFactor;     // Size of hitbox compared to bitmap
 
         void calcCenter();
 
