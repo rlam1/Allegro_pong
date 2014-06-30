@@ -47,7 +47,7 @@ void Object::draw()
 
     if (testBit(DRAW_HITBOX))
     {
-        al_draw_rectangle(x - w / 2.0, y - h / 2.0, x + w /2.0, y + w / 2.0, al_map_rgb(255, 0, 0), 2.0);
+        al_draw_rectangle(x - w / 2.0, y - h / 2.0, x + w /2.0, y + w / 2.0, al_map_rgb(255, 0, 0), 0);
     }
 }
 
