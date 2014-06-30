@@ -44,6 +44,10 @@ class Object
         Point center;
 
         void calcCenter();
+
+        void setBit(int value);
+        bool testBit(int value);
+        void clearBit(int value);
         
     private:
         int   status; //Bit field that holds status flags for object
@@ -51,8 +55,4 @@ class Object
 		
 		ALLEGRO_BITMAP *create_memory_bitmap();
 		void generate_error_bitmap();
-		
-		void setBit(int value);
-		bool testBit(int value);
-		void clearBit(int value);
 };

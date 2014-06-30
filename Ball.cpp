@@ -14,8 +14,16 @@ void Ball::reset()
 
 void Ball::update()
 {
+    checkForCollisions();
+
     x += accelX;
     y += accelY;
+
+    if (testBit(DEAD))
+    {
+        reset();
+        clearBit(DEAD);
+    }
 
     calcCenter();
 }
@@ -38,4 +46,16 @@ void Ball::getDisplayData()
 
     displayW = al_get_display_width(display);
     displayH = al_get_display_height(display);
+}
+
+void Ball::checkForCollisions()
+{
+    if (x < 0 || x > displayW)
+    {
+        accelX *= -1;
+    }
+    if (y < 0 || y > displayH)
+    {
+        accelY *= -1;
+    }
 }

@@ -10,6 +10,8 @@
 #include "Object.h"
 #include "Ball.h"
 
+const float FPS = 1.0 / 60.0;
+
 int main(int argc, char **argv)
 {
     al_init();
@@ -33,7 +35,7 @@ int main(int argc, char **argv)
     al_flip_display();
     
     ALLEGRO_FONT *sysFont = al_create_builtin_font();
-    ALLEGRO_TIMER *timer = al_create_timer(1 / 60.0);
+    ALLEGRO_TIMER *timer = al_create_timer(FPS);
     ALLEGRO_EVENT_QUEUE *queue = al_create_event_queue();
 	
 	al_register_event_source(queue, al_get_display_event_source(display));
@@ -45,7 +47,7 @@ int main(int argc, char **argv)
 	bool done = false;
 	bool redraw = false;
 	
-	Ball obj1(512, 300, 50, 50, 0, "Error Image loaded here!");
+	Ball obj1(512, 300, 50, 50, 2.0, 0, "Error Image loaded here!");
     obj1.reset();
 	
 	while(!done)

@@ -8,9 +8,10 @@
 class Ball : public Object
 {
     public:
-        Ball(float X_, float Y_, int W_, int H_, int status_, std::string sprite)
-            : Object(X_, Y_, W_, H_, 8.0, 8.0, status_, sprite)
+        Ball(float X_, float Y_, int W_, int H_, float acceleration, int status_, std::string sprite)
+            : Object(X_, Y_, W_, H_, acceleration, acceleration, status_, sprite)
         {
+            ACCELERATION = acceleration;
             std::srand(std::time(NULL));
             getDisplayData();
             randomDirection();
@@ -22,10 +23,11 @@ class Ball : public Object
         virtual void update() override;
 
     private:
-        const float ACCELERATION = 8.0;
+        float ACCELERATION;
 
         int displayW, displayH;
 
         void randomDirection();
         void getDisplayData();
+        void checkForCollisions();
 };

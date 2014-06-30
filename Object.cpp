@@ -40,8 +40,9 @@ void Object::draw()
 	if(testBit(ER_INVALID_STATE))
 	{
 		return;
-	} else {
-		al_draw_bitmap(bitmap, center.x, center.y, 0);
+	} else 
+    {
+        al_draw_bitmap(bitmap, center.x, center.y, 0);
 	}
 }
 
