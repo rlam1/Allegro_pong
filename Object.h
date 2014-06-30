@@ -47,8 +47,10 @@ class Object
         float accelX, accelY;
         Point center;
         float hitboxFactor;     // Size of hitbox compared to bitmap
+        int displayW, displayH;
 
         void calcCenter();
+        void getDisplayData();
 
         void setBit(int value);
         bool testBit(int value);

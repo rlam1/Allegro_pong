@@ -25,9 +25,6 @@ class Ball : public Object
     private:
         float ACCELERATION;
 
-        int displayW, displayH;
-
         void randomDirection();
-        void getDisplayData();
         void checkForCollisions();
 };

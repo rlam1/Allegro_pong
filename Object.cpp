@@ -112,6 +112,8 @@ int Object::getStatus()
 
 Point Object::getCenter()
 {
+    calcCenter();
+
     return center;
 }
 
@@ -196,6 +198,14 @@ void Object::calcCenter()
 {
     center.x = x - (w / 2.0);
     center.y = y - (h / 2.0);
+}
+
+void Object::getDisplayData()
+{
+    ALLEGRO_DISPLAY *display = al_get_current_display();
+
+    displayW = al_get_display_width(display);
+    displayH = al_get_display_height(display);
 }
 
 void Object::setBit(int value)
