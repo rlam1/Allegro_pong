@@ -44,6 +44,11 @@ void Object::draw()
     {
         al_draw_bitmap(bitmap, center.x, center.y, 0);
 	}
+
+    if (testBit(DRAW_HITBOX))
+    {
+        al_draw_rectangle(x - w / 2.0, y - h / 2.0, x + w /2.0, y + w / 2.0, al_map_rgb(255, 0, 0), 2.0);
+    }
 }
 
 void Object::getPos(float &x, float &y)
