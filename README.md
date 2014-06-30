@@ -1,7 +1,7 @@
 ALLEGRO_Pong
 ============
 
-Because the world needs another Pong(R) clone...
+Because the world needs another Pong clone...
 
 This one is made in Allegro 5.0.10
 
@@ -17,12 +17,12 @@ What I am doing right now?
 
 *Well*...
 
-  * Finding good foundation libraries so I don't reinvent the wheel again.
-  * Sketching Core game systems and interactions between libraries.
-  * Investigating a little about AI and game implementations of it (very **VERY** tedious)
-  * Enyoing a good read of [game programming patterns](http://www.gameprogrammingpatterns.com).
-  * Testing colours and styles so THEN start doing some artwork.
-  * Having a life apart of this...
+  - [X] Finding good foundation libraries so I don't reinvent the wheel again.
+  - [ ] Sketching Core game systems and interactions between libraries.
+  - [ ] Investigating a little about AI and game implementations of it (very **VERY** tedious)
+  - [X] Enyoing a good read of [game programming patterns](http://www.gameprogrammingpatterns.com).
+  - [X] Testing colours and styles so THEN start doing some artwork.
+  - [X] Having a life apart of this...
   * You get the idea
   
 About the Windows project file...
