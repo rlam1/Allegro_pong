@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 #include <allegro5/allegro5.h>
 #include <allegro5/display.h>
@@ -49,13 +50,16 @@ int main(int argc, char **argv)
 	
 	bool done = false;
 	bool redraw = false;
-	
-	Ball obj1(512, 300, 50, 50, 8.0, DRAW_HITBOX, "Error Image loaded here!");
-    obj1.reset();
 
-    Paddle obj2(10, 12, 10, 150, DRAW_HITBOX, "HEllo world!");
-    obj2.reset();
-	
+    std::vector<Object*> objects;
+    objects.push_back(new Ball(512, 300, 50, 50, 8.0, DRAW_HITBOX, "Error Image loaded here!"));
+    objects.push_back(new Paddle(10, 12, 10, 150, DRAW_HITBOX, "HEllo world!"));
+
+    for (auto &object : objects)
+    {
+        object->reset();
+    }
+
 	while(!done)
 	{
 		ALLEGRO_EVENT ev;
@@ -67,8 +71,10 @@ int main(int argc, char **argv)
 				done = true;
 				break;
 			case ALLEGRO_EVENT_TIMER:
-                obj1.update();
-                obj2.update();
+                for (auto &object : objects)
+                {
+                    object->update();
+                }
 				redraw = true;
 				break;
             case ALLEGRO_EVENT_KEY_DOWN:
@@ -94,13 +100,25 @@ int main(int argc, char **argv)
 		{
             al_clear_to_color(al_color_html("#212121"));
 
-			obj1.draw();
-            obj2.draw();
+            for (auto &object : objects)
+            {
+                object->draw();
+            }
             al_flip_display();
 
 			redraw = false;
 		}
 	}
+
+    for (auto &object : objects)
+    {
+        delete object;
+    }
+
+    al_destroy_display(display);
+    al_destroy_font(sysFont);
+    al_destroy_timer(timer);
+    al_destroy_event_queue(queue);
     
     return EXIT_SUCCESS;
 }
