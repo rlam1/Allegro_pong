@@ -1,4 +1,4 @@
-#include "paddle.h"
+#include "Paddle.h"
 
 int Paddle::numOfPaddles = 0;
 
