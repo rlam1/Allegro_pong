@@ -9,6 +9,7 @@
 
 #include "Object.h"
 #include "Ball.h"
+#include "Paddle.h"
 
 const float FPS = 1.0 / 60.0;
 
@@ -20,6 +21,7 @@ int main(int argc, char **argv)
     al_init_image_addon();
     al_init_primitives_addon();
     al_install_keyboard();
+    al_install_mouse();
     
     int displayFlags = al_get_new_display_flags();
 #ifdef _WIN32
@@ -41,6 +43,7 @@ int main(int argc, char **argv)
 	al_register_event_source(queue, al_get_display_event_source(display));
 	al_register_event_source(queue, al_get_keyboard_event_source());
 	al_register_event_source(queue, al_get_timer_event_source(timer));
+    al_register_event_source(queue, al_get_mouse_event_source());
 	
 	al_start_timer(timer);
 	
@@ -49,6 +52,9 @@ int main(int argc, char **argv)
 	
 	Ball obj1(512, 300, 50, 50, 8.0, DRAW_HITBOX, "Error Image loaded here!");
     obj1.reset();
+
+    Paddle obj2(12, 12, 10, 80, DRAW_HITBOX, "HEllo world!");
+    obj2.reset();
 	
 	while(!done)
 	{
@@ -62,12 +68,22 @@ int main(int argc, char **argv)
 				break;
 			case ALLEGRO_EVENT_TIMER:
                 obj1.update();
+                obj2.update();
 				redraw = true;
 				break;
             case ALLEGRO_EVENT_KEY_DOWN:
                 if (ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE)
                 {
                     done = true;
+                }
+                break;
+            case ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY:
+                al_grab_mouse(display);
+                break;
+            case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
+                if (ev.mouse.button == 2)   // Right Mouse button
+                {
+                    al_ungrab_mouse();
                 }
                 break;
             default:
@@ -79,6 +95,7 @@ int main(int argc, char **argv)
             al_clear_to_color(al_color_html("#212121"));
 
 			obj1.draw();
+            obj2.draw();
             al_flip_display();
 
 			redraw = false;
