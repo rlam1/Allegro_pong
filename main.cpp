@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 	Ball obj1(512, 300, 50, 50, 8.0, DRAW_HITBOX, "Error Image loaded here!");
     obj1.reset();
 
-    Paddle obj2(12, 12, 10, 80, DRAW_HITBOX, "HEllo world!");
+    Paddle obj2(10, 12, 10, 150, DRAW_HITBOX, "HEllo world!");
     obj2.reset();
 	
 	while(!done)

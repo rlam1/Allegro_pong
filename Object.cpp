@@ -82,7 +82,7 @@ void Object::draw()
     {
         al_draw_rectangle(
             x - w / hitboxFactor, y - h / hitboxFactor,
-            x + w / hitboxFactor, y + w / hitboxFactor,
+            x + w / hitboxFactor, y + h / hitboxFactor,
             al_map_rgb(255, 0, 0), 0);
     }
 }
