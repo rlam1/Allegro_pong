@@ -28,4 +28,4 @@ What I am doing right now?
 About the Windows project file...
 ---------------------------------
 
-The Windows project file does not use best examples in where the library is located, so Allegro is in an arbitrary location in my diskm but if you take the project be sure to configure it correctly before trying to build everything.
+The Windows project file does not use best examples in where the library is located, so Allegro is in an arbitrary location in my disk so, if you take the project, be sure to configure its paths correctly before trying to build anything.
