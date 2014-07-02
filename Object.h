@@ -9,8 +9,9 @@
 
 #include "status.h"
 
+template <typename T>
 struct Point {
-    float x, y;
+    T x, y;
 };
 
 class Object
@@ -30,12 +31,12 @@ class Object
         virtual void update() {}
 		void draw();
         
-        void  getPos(float &x, float &y); //Sends to two variables
-        void  getSize(float &w, float &h);
-        void  getAccel(float &accelX, float &accelY);
-        int   getStatus();
-        Point getCenter();
+        Point<float> getPos();
+        Point<float> getAccel();
+        Point<float> getCenter();
+        Point<int>  getSize();
         ALLEGRO_BITMAP *getBitmap();
+        int   getStatus();
         
         void setPosition(float x, float y);
         void setAccel(float accelX, float accelY);
@@ -45,7 +46,7 @@ class Object
         float x, y;
         int   w, h;
         float accelX, accelY;
-        Point center;
+        Point<float> center;
         float hitboxFactor;     // Size of hitbox compared to bitmap
         int displayW, displayH;
 

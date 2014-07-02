@@ -87,22 +87,31 @@ void Object::draw()
     }
 }
 
-void Object::getPos(float &x, float &y)
+Point<float> Object::getPos()
 {
-	x = this->x;
-	y = this->y;
+    Point<float> position;
+    position.x = x;
+    position.y = y;
+
+    return position;
 }
 
-void Object::getSize(float &w, float &h)
+Point<int> Object::getSize()
 {
-	w = this->w;
-	h = this->h;
+    Point<int> size;
+    size.x = w;
+    size.y = h;
+
+    return size;
 }
 
-void Object::getAccel(float &accelX, float &accelY)
+Point<float> Object::getAccel()
 {
-	accelX = this->accelX;
-	accelY = this->accelY;
+    Point<float> accelerationVector;
+    accelerationVector.x = accelX;
+    accelerationVector.y = accelY;
+
+    return accelerationVector;
 }
 
 int Object::getStatus()
@@ -110,7 +119,7 @@ int Object::getStatus()
 	return status;
 }
 
-Point Object::getCenter()
+Point<float> Object::getCenter()
 {
     calcCenter();
 
