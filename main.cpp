@@ -31,7 +31,7 @@ int main(int argc, char **argv)
     al_set_new_display_flags(displayFlags | ALLEGRO_FULLSCREEN_WINDOW);
 #endif
     ALLEGRO_DISPLAY *display = al_create_display(1024, 600);
-    Object iconObject(0, 0, 100, 100, 0, 0, 0, "This only hold the icon for the game, that is, the error image! :)");
+    Object iconObject(0, 0, 100, 100, 0, 0, 0, "PATH");
     al_set_window_title(display, "Pong Clone");
     al_set_display_icon(display, iconObject.getBitmap());
     al_clear_to_color(al_map_rgb(13, 13, 13));
@@ -52,8 +52,8 @@ int main(int argc, char **argv)
 	bool redraw = false;
 
     std::vector<Object*> objects;
-    objects.push_back(new Ball(512, 300, 50, 50, 8.0, DRAW_HITBOX, "Error Image loaded here!"));
-    objects.push_back(new Paddle(10, 12, 10, 150, DRAW_HITBOX, "HEllo world!"));
+    objects.push_back(new Ball(512, 300, 50, 50, 8.0, DRAW_HITBOX, "PATH"));
+    objects.push_back(new Paddle(10, 12, 10, 150, DRAW_HITBOX, "PATH"));
 
     for (auto &object : objects)
     {
