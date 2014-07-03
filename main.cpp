@@ -8,9 +8,7 @@
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_color.h>
 
-#include "Object.h"
-#include "Ball.h"
-#include "Paddle.h"
+#include "Game.h"
 
 const float FPS = 1.0 / 60.0;
 
@@ -51,14 +49,16 @@ int main(int argc, char **argv)
 	bool done = false;
 	bool redraw = false;
 
-    std::vector<Object*> objects;
-    objects.push_back(new Ball(512, 300, 50, 50, 8.0, DRAW_HITBOX, "PATH"));
-    objects.push_back(new Paddle(10, 12, 10, 150, DRAW_HITBOX, "PATH"));
+    Game game;
+    game.addObject(new Ball(512, 300, 50, 50, 8.0, DRAW_HITBOX, "PATH"));
+    game.addObject(new Paddle(10, 12, 10, 150, DRAW_HITBOX, PADDLE0, "PATH"));
 
-    for (auto &object : objects)
-    {
-        object->reset();
-    }
+#ifdef _DEBUG
+    std::cout << "Size of Object: " << sizeof(Object) << " bytes" << std::endl
+        << "Size of Paddle: " << sizeof(Paddle) << " bytes" << std::endl
+        << "Size of Ball:   " << sizeof(Ball) << " bytes" << std::endl
+        << "Size of Game:   " << sizeof(Game) << " bytes" << std::endl;
+#endif
 
 	while(!done)
 	{
@@ -71,10 +71,7 @@ int main(int argc, char **argv)
 				done = true;
 				break;
 			case ALLEGRO_EVENT_TIMER:
-                for (auto &object : objects)
-                {
-                    object->update();
-                }
+                game.update();
 				redraw = true;
 				break;
             case ALLEGRO_EVENT_KEY_DOWN:
@@ -98,22 +95,14 @@ int main(int argc, char **argv)
 		
 		if(al_is_event_queue_empty(queue) && redraw)
 		{
-            al_clear_to_color(al_color_html("#212121"));
+            al_clear_to_color(al_color_html("#000000"));
 
-            for (auto &object : objects)
-            {
-                object->draw();
-            }
+            game.draw();
             al_flip_display();
 
 			redraw = false;
 		}
 	}
-
-    for (auto &object : objects)
-    {
-        delete object;
-    }
 
     al_destroy_display(display);
     al_destroy_font(sysFont);

@@ -12,6 +12,7 @@ Object::Object(float X, float Y, int w, int h,
     accelY = accelerationY;
     this->status = status;
     this->hitboxFactor = 2.0;
+    name = OBJECT;
 
     calcCenter();
     
@@ -43,6 +44,7 @@ Object::Object(float X, float Y, int w, int h,
     accelY = accelerationY;
     this->status = status;
     this->hitboxFactor = hitBoxFactor;
+    name = OBJECT;
 
     calcCenter();
 
@@ -112,6 +114,11 @@ Point<float> Object::getAccel()
     accelerationVector.y = accelY;
 
     return accelerationVector;
+}
+
+int Object::getName()
+{
+    return name;
 }
 
 int Object::getStatus()

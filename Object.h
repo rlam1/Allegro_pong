@@ -14,6 +14,13 @@ struct Point {
     T x, y;
 };
 
+enum Type {
+    OBJECT,
+    BALL,
+    PADDLE0,
+    PADDLE1
+};
+
 class Object
 {
     public:
@@ -36,6 +43,7 @@ class Object
         Point<float> getCenter();
         Point<int>  getSize();
         ALLEGRO_BITMAP *getBitmap();
+        int getName();
         int   getStatus();
         
         void setPosition(float x, float y);
@@ -43,6 +51,7 @@ class Object
         void setStatus(int flag);
 
     protected:
+        int name;
         float x, y;
         int   w, h;
         float accelX, accelY;

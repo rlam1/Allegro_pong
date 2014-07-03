@@ -15,6 +15,7 @@ class Ball : public Object
             std::srand(std::time(NULL));
             getDisplayData();
             randomDirection();
+            name = BALL;
         }
 
         ~Ball() {}
