@@ -57,11 +57,20 @@ class Game
 
             Point<float> ballCenter = ball->getCenter();
             Point<int> ballSize = ball->getSize();
+            float ballHitboxFactor = ball->getHitboxFactor();
 
             Point<float> paddleCenter[2];
             paddleCenter[0] = paddle0->getCenter();
             paddleCenter[1] = paddle1->getCenter();
             Point<int> paddleSize = paddle0->getSize();
+            float paddleHBfactor = paddle0->getHitboxFactor();
+
+            // TODO: FINISH THIS LOGIC!!!!!!!!!!!
+
+            if ((ballCenter.x - (ballSize.x / ballHitboxFactor)) <= (paddleCenter[0].x + (paddleSize.x / paddleHBfactor)))
+            {
+                ball->setStatus(DEAD);
+            }
             
             paddle0->update();
             paddle1->update();
@@ -69,6 +78,7 @@ class Game
             if ((ball->getStatus() & DEAD) != 0)
             {
                 ball->reset();
+                ball->setStatus(!DEAD);
             }
             ball->update();
         }

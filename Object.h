@@ -45,6 +45,7 @@ class Object
         ALLEGRO_BITMAP *getBitmap();
         int getName();
         int getStatus();
+        float getHitboxFactor();
         
         void setPosition(float x, float y);
         void setAccel(float accelX, float accelY);

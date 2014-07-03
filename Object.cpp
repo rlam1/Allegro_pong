@@ -126,6 +126,11 @@ int Object::getStatus()
 	return status;
 }
 
+float Object::getHitboxFactor()
+{
+    return hitboxFactor;
+}
+
 Point<float> Object::getCenter()
 {
     calcCenter();
