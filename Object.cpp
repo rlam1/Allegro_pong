@@ -168,6 +168,12 @@ void Object::setStatus(int flag)
 	setBit(flag);
 }
 
+void Object::reverseAcceleration()
+{
+    accelX *= -1;
+    accelY *= -1;
+}
+
 ALLEGRO_BITMAP *Object::create_memory_bitmap()
 {
 	setBit(ER_BITMAP);

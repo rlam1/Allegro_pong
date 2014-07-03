@@ -64,23 +64,22 @@ class Game
             paddleCenter[1] = paddle1->getCenter();
             Point<int> paddleSize = paddle0->getSize();
             float paddleHBfactor = paddle0->getHitboxFactor();
-
-            // TODO: FINISH THIS LOGIC!!!!!!!!!!!
-
-            if ((ballCenter.x - (ballSize.x / ballHitboxFactor)) <= (paddleCenter[0].x + (paddleSize.x / paddleHBfactor)))
-            {
-                ball->setStatus(DEAD);
-            }
             
             paddle0->update();
             paddle1->update();
 
-            if ((ball->getStatus() & DEAD) != 0)
+            // TODO: FINISH THIS LOGIC!!!!!!!!!!!
+            if (checkBallCollision(ballCenter, ballSize, ballHitboxFactor, paddleCenter[0], paddleSize, paddleHBfactor))
             {
-                ball->reset();
-                ball->setStatus(!DEAD);
+                ball->setStatus(HIT_PADDLE);
             }
-            ball->update();
+
+            //if (checkBallCollision(ballCenter, ballSize, ballHitboxFactor, paddleCenter[1], paddleSize, paddleHBfactor))
+            //{
+            //    ball->setStatus(HIT_PADDLE);
+            //}
+
+           ball->update();
         }
 
         void draw()
@@ -99,6 +98,20 @@ class Game
 
     private:
         std::vector<Object*> objects;
+
+        bool checkBallCollision(Point<float> ballXY, Point<int> ballHW, float ballHitboxF,
+            Point<float> paddleXY, Point<int> paddleHW, float paddleHitboxf)
+        {
+            if ((ballXY.x - ballHW.x / ballHitboxF) + (ballXY.x + ballHW.x / ballHitboxF) <= paddleXY.x - paddleHW.x / paddleHitboxf
+                || ballXY.x - ballHW.x / ballHitboxF >= (paddleXY.x - paddleHW.x / paddleHitboxf) + (paddleXY.x + paddleHW.x / paddleHitboxf))
+                return false;
+
+            if ((ballXY.y - ballHW.y / ballHitboxF) + (ballXY.y + ballHW.y / ballHitboxF) <= paddleXY.y - paddleHW.y / paddleHitboxf
+                || ballXY.y - ballHW.y / ballHitboxF >= (paddleXY.x - paddleHW.y / paddleHitboxf) + (paddleXY.y + paddleHW.y / paddleHitboxf))
+                return false;
+
+            return true;
+        }
 
         int score[2];
 };

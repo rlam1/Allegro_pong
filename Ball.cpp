@@ -19,10 +19,19 @@ void Ball::update()
     x += accelX;
     y += accelY;
 
+    if (x - w / hitboxFactor <= 0 || x + w / hitboxFactor >= displayW)
+        setBit(DEAD);
+
     if (testBit(DEAD))
     {
         reset();
         clearBit(DEAD);
+    }
+
+    if (testBit(HIT_PADDLE))
+    {
+        reverseAcceleration();
+        clearBit(HIT_PADDLE);
     }
 
     calcCenter();

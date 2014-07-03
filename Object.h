@@ -62,6 +62,7 @@ class Object
 
         void calcCenter();
         void getDisplayData();
+        void reverseAcceleration();
 
         void setBit(int value);
         bool testBit(int value);
