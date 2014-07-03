@@ -44,7 +44,7 @@ class Object
         Point<int>  getSize();
         ALLEGRO_BITMAP *getBitmap();
         int getName();
-        int   getStatus();
+        int getStatus();
         
         void setPosition(float x, float y);
         void setAccel(float accelX, float accelY);

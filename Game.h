@@ -55,11 +55,21 @@ class Game
                 }
             }
 
-
             Point<float> ballCenter = ball->getCenter();
+            Point<int> ballSize = ball->getSize();
+
+            Point<float> paddleCenter[2];
+            paddleCenter[0] = paddle0->getCenter();
+            paddleCenter[1] = paddle1->getCenter();
+            Point<int> paddleSize = paddle0->getSize();
             
             paddle0->update();
-            //paddle1->update();
+            paddle1->update();
+
+            if ((ball->getStatus() & DEAD) != 0)
+            {
+                ball->reset();
+            }
             ball->update();
         }
 

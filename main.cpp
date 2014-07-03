@@ -11,6 +11,7 @@
 #include "Game.h"
 
 const float FPS = 1.0 / 60.0;
+Point<int> screenSize;
 
 int main(int argc, char **argv)
 {
@@ -22,13 +23,15 @@ int main(int argc, char **argv)
     al_install_keyboard();
     al_install_mouse();
     
+    screenSize.x = 1024;
+    screenSize.y = 600;
     int displayFlags = al_get_new_display_flags();
 #ifdef _WIN32
     al_set_new_bitmap_flags(displayFlags | ALLEGRO_FULLSCREEN);
 #else
     al_set_new_display_flags(displayFlags | ALLEGRO_FULLSCREEN_WINDOW);
 #endif
-    ALLEGRO_DISPLAY *display = al_create_display(1024, 600);
+    ALLEGRO_DISPLAY *display = al_create_display(screenSize.x, screenSize.y);
     Object iconObject(0, 0, 100, 100, 0, 0, 0, "PATH");
     al_set_window_title(display, "Pong Clone");
     al_set_display_icon(display, iconObject.getBitmap());
@@ -52,12 +55,13 @@ int main(int argc, char **argv)
     Game game;
     game.addObject(new Ball(512, 300, 50, 50, 8.0, DRAW_HITBOX, "PATH"));
     game.addObject(new Paddle(10, 12, 10, 150, DRAW_HITBOX, PADDLE0, "PATH"));
+    game.addObject(new Paddle(screenSize.x - 10, 12, 10, 150, DRAW_HITBOX, PADDLE1, "PATH"));
 
 #ifdef _DEBUG
     std::cout << "Size of Object: " << sizeof(Object) << " bytes" << std::endl
-        << "Size of Paddle: " << sizeof(Paddle) << " bytes" << std::endl
-        << "Size of Ball:   " << sizeof(Ball) << " bytes" << std::endl
-        << "Size of Game:   " << sizeof(Game) << " bytes" << std::endl;
+        << "Size of Paddle:  " << sizeof(Paddle) << " bytes" << std::endl
+        << "Size of Ball:    " << sizeof(Ball) << " bytes" << std::endl
+        << "Size of Game:    " << sizeof(Game) << " bytes" << std::endl;
 #endif
 
 	while(!done)
