@@ -56,6 +56,7 @@ int main(int argc, char **argv)
     game.addObject(new Ball(512, 300, 50, 50, 8.0, DRAW_HITBOX, "PATH"));
     game.addObject(new Paddle(10, 12, 10, 150, DRAW_HITBOX, PADDLE0, "PATH"));
     game.addObject(new Paddle(screenSize.x - 10, 12, 10, 150, DRAW_HITBOX, PADDLE1, "PATH"));
+    game.init();
 
 #ifdef _DEBUG
     std::cout << "Size of Object: " << sizeof(Object) << " bytes" << std::endl

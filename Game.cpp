@@ -1,5 +1,12 @@
 #include "Game.h"
 
+Game::Game()
+{
+    Object* paddle0 = nullptr;
+    Object* paddle1 = nullptr;
+    Object* ball = nullptr;
+}
+
 Game::~Game()
 {
     for (auto &object : objects)
@@ -8,12 +15,8 @@ Game::~Game()
     }
 }
 
-void Game::update()
+void Game::init()
 {
-    Object* paddle0 = nullptr;
-    Object* paddle1 = nullptr;
-    Object* ball = nullptr;
-
     for (auto &object : objects)
     {
         int name = object->getName();
@@ -36,7 +39,10 @@ void Game::update()
                 break;
         }
     }
+}
 
+void Game::update()
+{
     Point<float> ballCenter = ball->getCenter();
     Point<int> ballSize = ball->getSize();
     float ballHitboxFactor = ball->getHitboxFactor();
@@ -56,10 +62,10 @@ void Game::update()
         ball->setStatus(HIT_PADDLE);
     }
 
-    //if (checkBallCollision(ballCenter, ballSize, ballHitboxFactor, paddleCenter[1], paddleSize, paddleHBfactor))
-    //{
-    //    ball->setStatus(HIT_PADDLE);
-    //}
+    if (checkBallCollision(ballCenter, ballSize, ballHitboxFactor, paddleCenter[1], paddleSize, paddleHBfactor))
+    {
+        ball->setStatus(HIT_PADDLE);
+    }
 
     ball->update();
 }
@@ -79,15 +85,17 @@ void Game::addObject(Object *object)
 }
 
 bool Game::checkBallCollision(Point<float> ballXY, Point<int> ballHW, float ballHitboxF,
-    Point<float> paddleXY, Point<int> paddleHW, float paddleHitboxf)
+    Point<float> paddleXY, Point<int> paddleHW, float paddleHitboxF)
 {
-    if ((ballXY.x - ballHW.x / ballHitboxF) + (ballXY.x + ballHW.x / ballHitboxF) <= paddleXY.x - paddleHW.x / paddleHitboxf
-        || ballXY.x - ballHW.x / ballHitboxF >= (paddleXY.x - paddleHW.x / paddleHitboxf) + (paddleXY.x + paddleHW.x / paddleHitboxf))
-        return false;
+    float Ax1 = ballXY.x - ballHW.x / ballHitboxF;
+    float Ax2 = ballXY.x + ballHW.x / ballHitboxF;
+    float Ay1 = ballXY.y - ballHW.y / ballHitboxF;
+    float Ay2 = ballXY.y + ballHW.y / ballHitboxF;
 
-    if ((ballXY.y - ballHW.y / ballHitboxF) + (ballXY.y + ballHW.y / ballHitboxF) <= paddleXY.y - paddleHW.y / paddleHitboxf
-        || ballXY.y - ballHW.y / ballHitboxF >= (paddleXY.x - paddleHW.y / paddleHitboxf) + (paddleXY.y + paddleHW.y / paddleHitboxf))
-        return false;
-
-    return true;
+    float Bx1 = paddleXY.x - paddleHW.x / paddleHitboxF;
+    float Bx2 = paddleXY.x + paddleHW.x / paddleHitboxF;
+    float By1 = paddleXY.y - paddleHW.y / paddleHitboxF;
+    float By2 = paddleXY.y + paddleHW.y / paddleHitboxF;
+    
+    return !(Ax2 < Bx1 || Bx2 < Ax1 || Ax2 < By1 || By2 < Ay1);
 }

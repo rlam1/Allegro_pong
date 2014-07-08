@@ -16,17 +16,21 @@
 class Game 
 {
     public:
-        Game() {}
+        Game();
         virtual ~Game();
 
+        void init();
         void update();
         void draw();
         void addObject(Object *object);
 
     private:
+        Object* paddle0;
+        Object* paddle1;
+        Object* ball;
         std::vector<Object*> objects;
         int score[2];
 
         bool checkBallCollision(Point<float> ballXY, Point<int> ballHW, float ballHitboxF,
-            Point<float> paddleXY, Point<int> paddleHW, float paddleHitboxf);
+            Point<float> paddleXY, Point<int> paddleHW, float paddleHitboxF);
 };
