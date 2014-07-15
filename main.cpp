@@ -10,7 +10,7 @@
 
 #include "Game.h"
 
-const float FPS = 1.0 / 60.0;
+const float FPS = 1.0f / 60.0f;
 Point<int> screenSize;
 
 int main(int argc, char **argv)
@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 	bool redraw = false;
 
     Game game;
-    game.addObject(new Ball(512, 300, 50, 50, 8.0, DRAW_HITBOX, "PATH"));
+    game.addObject(new Ball(512, 300, 50, 50, 8.0f, DRAW_HITBOX, "PATH"));
     game.addObject(new Paddle(10, 12, 10, 150, DRAW_HITBOX, PADDLE0, "PATH"));
     game.addObject(new Paddle(screenSize.x - 10, 12, 10, 150, DRAW_HITBOX, PADDLE1, "PATH"));
     game.init();

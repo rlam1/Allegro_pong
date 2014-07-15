@@ -13,6 +13,10 @@
 #include "Ball.h"
 #include "Paddle.h"
 
+struct rect {
+    float x, y, w, h;
+};
+
 class Game 
 {
     public:
@@ -33,4 +37,6 @@ class Game
 
         bool checkBallCollision(Point<float> ballXY, Point<int> ballHW, float ballHitboxF,
             Point<float> paddleXY, Point<int> paddleHW, float paddleHitboxF);
+
+        std::vector<rect> hitBoxBorders;
 };

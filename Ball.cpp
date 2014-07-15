@@ -4,7 +4,7 @@ void Ball::reset()
 {
     float resetX, resetY;
 
-    resetX = displayW / 2.0;
+    resetX = displayW / 2.0f;
     resetY = rand() % displayH;
 
     randomDirection();

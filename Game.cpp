@@ -39,6 +39,14 @@ void Game::init()
                 break;
         }
     }
+
+    rect dummy;
+    dummy.x = 0;
+    dummy.y = 0;
+    dummy.h = 0;
+    dummy.w = 0;
+
+    hitBoxBorders.push_back(dummy);
 }
 
 void Game::update()
@@ -76,6 +84,11 @@ void Game::draw()
     {
         object->draw();
     }
+
+    for (auto &rec : hitBoxBorders)
+    {
+       al_draw_filled_rectangle(rec.x, rec.y, rec.w, rec.h, al_map_rgb(255, 0, 255));
+    }
 }
 
 void Game::addObject(Object *object)
@@ -96,6 +109,14 @@ bool Game::checkBallCollision(Point<float> ballXY, Point<int> ballHW, float ball
     float Bx2 = paddleXY.x + paddleHW.x / paddleHitboxF;
     float By1 = paddleXY.y - paddleHW.y / paddleHitboxF;
     float By2 = paddleXY.y + paddleHW.y / paddleHitboxF;
+
+    rect paddle;
+    paddle.x = Bx1;
+    paddle.y = By1;
+    paddle.w = Bx2;
+    paddle.h = By2;
+
+    hitBoxBorders.push_back(paddle);
     
-    return !(Ax2 < Bx1 || Bx2 < Ax1 || Ax2 < By1 || By2 < Ay1);
+    return !(Ax2 < Bx1 || Bx2 < Ax1 || Ay2 < By1 || By2 < Ay1);
 }

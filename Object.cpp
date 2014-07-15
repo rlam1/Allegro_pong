@@ -11,7 +11,7 @@ Object::Object(float X, float Y, int w, int h,
     accelX = accelerationX;
     accelY = accelerationY;
     this->status = status;
-    this->hitboxFactor = 2.0;
+    this->hitboxFactor = 2.0f;
     name = OBJECT;
 
     calcCenter();
@@ -207,24 +207,24 @@ void Object::generate_error_bitmap()
     al_clear_to_color(background);
 
     // Shadow (3 triangles)
-    al_draw_filled_triangle(w / 2.0, h / 4.0, w, (h * 3.0) / 4.0, w / 2.0, h, shadow);
-    al_draw_filled_triangle(w, (h * 3.0) / 4.0, w, h, w / 2.0, h, shadow);
-    al_draw_filled_triangle(w / 2.0, h / 4.0, w / 2.0, h, w / 4.0, (h * 3.0) / 4.0, shadow);
+    al_draw_filled_triangle(w / 2.0f, h / 4.0f, w, (h * 3.0f) / 4.0f, w / 2.0f, h, shadow);
+    al_draw_filled_triangle(w, (h * 3.0f) / 4.0f, w, h, w / 2.0f, h, shadow);
+    al_draw_filled_triangle(w / 2.0f, h / 4.0f, w / 2.0f, h, w / 4.0f, (h * 3.0f) / 4.0f, shadow);
 	
     // Alert sign triangle
-	al_draw_filled_triangle(w / 2.0, h / 4.0, ((w * 3.0) / 4), ((h * 3.0) / 4.0), w / 4.0, ((h * 3.0) / 4.0), sign);
+	al_draw_filled_triangle(w / 2.0f, h / 4.0f, ((w * 3.0f) / 4), ((h * 3.0f) / 4.0f), w / 4.0f, ((h * 3.0f) / 4.0f), sign);
 		
     // Exclamation point
-	al_draw_filled_rectangle((w * 15.0) / 32.0, ((h * 14.0) / 32.0), ((w * 17.0) / 32.0), ((h * 19.0) / 32.0), background);
-    al_draw_filled_rectangle((w * 15.0) / 32.0, (h * 5.0) / 8, (w * 17.0) / 32.0, (h * 11.0) / 16.0, background);
+	al_draw_filled_rectangle((w * 15.0f) / 32.0f, ((h * 14.0f) / 32.0f), ((w * 17.0f) / 32.0f), ((h * 19.0f) / 32.0f), background);
+    al_draw_filled_rectangle((w * 15.0f) / 32.0f, (h * 5.0f) / 8.0f, (w * 17.0f) / 32.0f, (h * 11.0f) / 16.0f, background);
 		
 	al_set_target_backbuffer(al_get_current_display());
 }
 
 void Object::calcCenter()
 {
-    center.x = x - (w / 2.0);
-    center.y = y - (h / 2.0);
+    center.x = x - (w / 2.0f);
+    center.y = y - (h / 2.0f);
 }
 
 void Object::getDisplayData()
